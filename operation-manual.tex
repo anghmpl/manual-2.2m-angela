@@ -851,9 +851,9 @@ One reason for a bad wavelength calibration can be problems with one of the cali
 
 
 \begin{figure*}
-\subfigure[]{\includegraphics[width=0.45\linewidth]{feros/feros_ff_lamp2_on.png}\label{fig:ff-lamp2-on}}
+\subfigure[]{\includegraphics[width=0.45\linewidth]{feros/feros_ff_lamp2_on.jpg}\label{fig:ff-lamp2-on}}
 \hfill
-\subfigure[]{\includegraphics[width=0.45\linewidth]{feros/feros_ff_lamp2_off.png}\label{fig:ff-lamp2-off}}
+\subfigure[]{\includegraphics[width=0.45\linewidth]{feros/feros_ff_lamp2_off.jpg}\label{fig:ff-lamp2-off}}
 \caption{Example of \texttt{FEROS} flat field image, with lamp 2 ON (a) and lamp 2 OFF (b)}
 \label{fig:feros-ff}
 \end{figure*}
@@ -861,7 +861,7 @@ One reason for a bad wavelength calibration can be problems with one of the cali
 
 \begin{figure*}
 \centering
-\includegraphics[width=.5\linewidth]{feros/feros-rack.png}
+\includegraphics[width=.5\linewidth]{feros/feros-rack.jpg}
 \caption{Settings for \texttt{FEROS} calibration lamps (\texttt{FEROS} room in telescope building). }
 \label{fig:feros-rack}
 \end{figure*}
@@ -3283,7 +3283,7 @@ Check that
 \subsection{Problems to restart the FEROS-DRS and data subscriber}
 
 
-If you cannot start the \gls{feros} \gls{drs} this might be for the following reason: when rebooting \gls{w2p2off} without bringing down the pipeline before, a hidden watch-dog file and several locks may survive.  It also happens in other contexts and the aetiology is unclear (most likely a bug). If all other attempts have failed to start the DRS, follow these steps.
+If you cannot start the \gls{feros} \gls{drs} this might be for the following reason: when rebooting \gls{w2p2off} without bringing down the pipeline before, a hidden watch-dog file and several locks may survive.  It also happens in other contexts and the metiology is unclear (most likely a bug). If all other attempts have failed to start the DRS, follow these steps.
 
 \procedure{Restart the FEROS data reduction software and data subscriber}
 \label{proc:FEROSDRSrestart}
@@ -3444,7 +3444,7 @@ panel. If it is the case, you have to remove it manually using \procref{ferosadc
 \paragraph{Instrument stays in STANDBY and all devices are OFF}
 \begin{figure}
 \centering
-\includegraphics[width=0.7\linewidth]{feros/FEROS-badscanlinks.jpg}
+\includegraphics[width=0.7\linewidth]{feros/FEROS-badscanlinks-2.jpg}
 \caption[When feinsInstallScanLinks is needed]{FEROS General state when scan links are compromised and need Procedure~\ref{proc:ferosscanlinks}.}
 \end{figure}
 Another reason for the instrument to stay in STANDBY are bad scan links to the ICS LCU \gls{lfeics1}. In that case, the \gls{General State} panel will show several red FAILED statuses for lamps and the \gls{ICS Control} will have all devices OFF.
@@ -3481,6 +3481,54 @@ The optional steps may shorten troubleshooting as all scan links may have been c
 \caption[Telemetry window]{\Gls{telemetry} window.}
 \end{figure}
 
+\paragraph{FEROS is ONLINE but OB crashes}
+\label{proc:feros_fiera_powercycle}
+If all FEROS systems are ONLINE but the test OB or any other OB crashes with an FIERA related error \figref{feros_fiera_0}, try the following steps:'
+
+\begin{enumerate}
+	\item Do a \texttt{FULL} startup of \gls{feros} (8~min).
+	\item\label{list:ferosfierarestart} Do a full restart of \gls{fiera} and \gls{feros} (10-15~min).
+	\item Do a power-cycle of FIERA (30 min): 
+	\procedure{Power-cycle \Gls{feros} FIERA}
+	\label{proc:feros_fiera_powercycle}
+	\begin{enumerate}
+		\item go to the VME room in the dome and look for the SLCU \gls{wfefcd}. Switch it off.
+		\item Go to FEROS room and switch off the power for FIERA (\figref{feros_fiera}),the power switch is on the back-side of the lower part (\figref{feros_fiera_1}). Wait 10 seconds and switch the power back on.
+		\item Power on \gls{wfefcd}
+		\item Do a \texttt{FULL} startup of \gls{feros} (8~min).
+	 \end{enumerate}	
+\end{enumerate}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{feros/feros_fiera_0.png}
+	\caption[If an OB crashes although \gls{feros} is ONLINE]{If an OB crashes with this error message, although FEROS and all systems are ONLINE a power-cycle for FIERA might be required.}
+	\label{fig:feros_fiera_0}	
+\end{figure}
+
+\begin{figure}[t!]
+\begin{minipage}{0.48\linewidth}
+\subfigure[\Gls{feros} FIERA in the FEROS room.]{%
+\includegraphics[angle=270,width=\linewidth]{feros/FEROS_FIERA_2.jpg}
+\label{fig:feros_fiera_2}
+}
+\end{minipage}
+\hspace{0.02\linewidth}
+\begin{minipage}{0.48\linewidth}
+\subfigure[The backside of the power supply for \gls{feros} FIERA.]{
+\includegraphics[angle=270,width=\linewidth]{feros/FEROS_FIERA_1.jpg}
+\label{fig:feros_fiera_1}
+		}
+\end{minipage}
+\caption[\Gls{feros} FIERA] {The \gls{feros} FIERA is located in the \gls{feros} room.}
+\label{fig:feros_fiera}
+\end{figure}
+
+
+
+
+
+
 
 \subsection{WFI}
 
@@ -3504,7 +3552,7 @@ The commonest issues are:
 \procedure{Fix WFI init error}
 \begin{figure}
     \centering
-    \includegraphics[width=.8\linewidth]{wfi/wfiselftest.jpg}
+    \includegraphics[width=.8\linewidth]{wfi/wfiselftest.png}
     \caption{Successful self-test run of WFI electronics}
     \label{fig:wfiselftest}
 \end{figure}
@@ -3934,9 +3982,13 @@ This is common on the \gls{wfi} screens.
 \begin{tabular}{lrrr}
 \hline\hline
 Parameter & FEROS      & GROND     & WFI\\\hline
-ID        & $-150.86$  & $-60.04$ & $-294.28$\\
-IH        & $-3802.80$  & $-3787.00$ & $-3793.83$\\
+ID        & $-150.86$  & $-0.04$ & $-294.28$\\
+IH        & $+33.80$  & $-18.00$ & $+42.83$\\
 CH        & $ 110.55$  & $28.89$ & $ -83.18$\\\hline
+% old values
+% ID        & $-150.86$  & $-60.04$ & $-294.28$\\
+% IH        & $-3802.80$  & $-3787.00$ & $-3793.83$\\
+% CH        & $ 110.55$  & $28.89$ & $ -83.18$\\\hline
 NP        & \multicolumn{3}{r}{$15.78$}\\
 ME        & \multicolumn{3}{r}{$-127.72$}\\
 MA        & \multicolumn{3}{r}{$3.79$}\\
@@ -4024,15 +4076,23 @@ If the all sky camera \gls{lascam} is stuck
   \item Ask an ESO \gls{tio} to restart \gls{lascam}
 \end{enumerate}
 
-\subsection{Dome webcam doesn't show image}
-It may happen that the dome \gls{webcam} doesn't show a live image of the dome---it may still carry sound though. In that case
-\procedure{Power cycle the dome webcam}
+\subsection{Dome webcam doesn't show live image}
+It may happen that the \gls{webcam} doesn't show a live image of the dome. Sometimes that happens after the light changes drastically, e.g. after  switching on/off the flat field lamp or after opening/closing the dome during day light. In that case, reload the web-page and press the video symbol. \\
+\\
+If that is not enough, try this:
 \begin{enumerate}
    \item Go to the observing floor in the telescope enclosure
    \item Locate the webcam, close to the big ADAM rack and monitors.
    \item Unplug the AC cable.
    \item Plug the AC cable again.
 \end{enumerate}
+
+\subsection{Start webcam after restarting the Windows computer}
+If the windows computer with the webcam had to be reboots, you have to open a Firefox window and open:\\
+\url{http://134.171.103.2007camera/index.html#/video}
+
+The pop-up window will ask for user name and password, but already has "guest" as username set. Just click "OK". You will have to start the live view by pressing the video symbol.??
+
 
 \section{ESO database issues}
 
